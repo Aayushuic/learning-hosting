@@ -37,11 +37,12 @@ app.use(errorHandler);
 
 AppDataSource.initialize()
   .then(async () => {
-    app.listen(port, () => {
-      console.log(`server is running on port ${port}`);
-    });
     await AdminSeeder.run();
   })
   .catch((err) => {
     console.error('Error during database initialization:', err);
   });
+
+app.listen(port, () => {
+  console.log(`server is running on port ${port}`);
+});
